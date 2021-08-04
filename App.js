@@ -1,21 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+import { DarkTheme, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import Store from './src/Store';
+import { Header, Body, Footer } from './src/Components';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const theme = {
+  ...DefaultTheme,
+  roundness: 3,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#9be5aa',
+    // primary: '#000',
+    accent: '#f1c40f'
+  }
+  // ...DarkTheme,
+  // colors: {
+  //   ...DarkTheme.colors,
+  //   primary: '#2d3436',
+  //   accent: '#1C1C1C',
+  //   background: '#636e72',
+  //   paper: '#000000',
+  //   text: '#000000',
+  //   disabled: '#000000',
+  //   placeholder: '#000000'
+  // }
+};
+
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={Store}>
+        <PaperProvider theme={theme}>
+          <Header />
+          <Body />
+          <Footer />
+        </PaperProvider>
+      </Provider>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
