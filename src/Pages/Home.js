@@ -1,40 +1,29 @@
-import React from "react";
-import { connect } from "react-redux";
-import Stats from "../Components/Stats";
-import RecentlyFarmed from "../Components/RecentlyFarmed";
-import { ScrollView, View, StatusBar } from "react-native";
-import { Subheading, Button, Text } from "react-native-paper";
+import React from 'react';
+import { connect } from 'react-redux';
+import Stats from '../Components/Stats';
+import RecentlyFarmed from '../Components/RecentlyFarmed';
+import { ScrollView, View } from 'react-native';
+import { Subheading, Button, Text } from 'react-native-paper';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 // import {Global} from '../Styles/Global'
 const Home = (props) => {
+  const { contentBody, subHeading, button, scrollView, text, subHeadingText } = styles;
   const poolInfo = props.info.data.poolInfo;
   const winningInfo = props.info.data.winningInfo;
-  const { contentBody, subHeading, button, scrollView, text, subHeadingText } =
-    styles;
 
   return (
     <View style={contentBody}>
-      <ScrollView
-        scrollToOverflowEnabled={true}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={scrollView}
-      >
+      <ScrollView scrollToOverflowEnabled={true} showsVerticalScrollIndicator={false} contentContainerStyle={scrollView}>
         <Subheading style={subHeading}>
-          <Text style={subHeadingText}>
-            JOIN ONE OF THE WORLD'S BIGGEST PERFORMING CHIA FARMING POOL
-          </Text>
+          <Text style={subHeadingText}>JOIN ONE OF THE WORLD'S BIGGEST PERFORMING CHIA FARMING POOL</Text>
         </Subheading>
-        <Button
-          style={button}
-          icon="login"
-          mode="contained"
-          onPress={() => console.log("Pressed")}
-        >
+        <Button style={button} icon='login' mode='contained' onPress={() => console.log('Pressed')}>
           <Text style={text}>Join Now</Text>
         </Button>
 
-        <Stats poolInfo={poolInfo} />
-        <RecentlyFarmed winningInfo={winningInfo} />
+        {poolInfo != null ? <Stats poolInfo={poolInfo} /> : <Spinner visible={true} textContent={'fetching data...'} textStyle={{ color: '#253145' }} animation='fade' />}
+        {winningInfo != null ? <RecentlyFarmed winningInfo={winningInfo} /> : null}
       </ScrollView>
     </View>
   );
@@ -42,7 +31,7 @@ const Home = (props) => {
 
 function mapStateToProps(state) {
   return {
-    info: state.info,
+    info: state.info
   };
 }
 
@@ -51,40 +40,39 @@ export default connect(mapStateToProps)(Home);
 const styles = {
   contentBody: {
     paddingTop: 5,
-    background: "white",
+    background: 'white'
   },
   subHeading: {
-    textAlign: "center",
+    textAlign: 'center',
     fontSize: 13,
-    fontWeight: "bold",
+    fontWeight: 'bold'
   },
   button: {
-    backgroundColor: "rgb(255, 135, 35)",
+    backgroundColor: 'rgb(255, 135, 35)',
     marginTop: 20,
     marginBottom: 15,
     height: 40,
-    justifyContent: "center",
+    justifyContent: 'center',
     width: 140,
-    shadowColor: "darkgrey",
+    shadowColor: 'darkgrey',
     shadowOffset: { width: 3, height: 5 },
     shadowOpacity: 3,
     elevation: 1,
-    borderRadius: 20,
+    borderRadius: 20
   },
   scrollView: {
-    alignItems: "center",
-    height: StatusBar.currentHeight,
-    width: "100%",
+    alignItems: 'center',
+    width: '100%'
   },
   text: {
-    color: "white",
+    color: 'white',
     fontSize: 13,
-    fontWeight: "bold",
+    fontWeight: 'bold'
   },
   subHeadingText: {
-    color: "green",
-    textAlign: "center",
+    color: 'green',
+    textAlign: 'center',
     fontSize: 13,
-    fontWeight: "bold",
-  },
+    fontWeight: 'bold'
+  }
 };
