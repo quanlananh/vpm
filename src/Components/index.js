@@ -1,6 +1,5 @@
-import Header from './Header';
-import Body from './Body';
-import Stats from './Stats';
-import Footer from './Footer';
+import Header from "./Header";
+import Info from "./Info";
+import Stats from "./Stats";
 
-export { Header, Body, Stats, Footer };
+export { Header, Info, Stats };

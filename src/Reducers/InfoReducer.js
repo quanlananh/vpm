@@ -1,10 +1,14 @@
-import { FETCHING_DATA, FETCHING_DATA_SUCCESS, FETCHING_DATA_FAIL } from '../Utils/ActionTypes';
+import {
+  FETCHING_DATA,
+  FETCHING_DATA_SUCCESS,
+  FETCHING_DATA_FAIL,
+} from "../Utils/ActionTypes";
 
 const initialState = {
   isFetching: false,
   data: [],
   hasError: false,
-  errorMessage: null
+  errorMessage: null,
 };
 
 export default function (state = initialState, { payload, type }) {

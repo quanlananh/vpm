@@ -1,1 +1,12 @@
-export const apiBaseURL = 'https://api.vastpool.net/';
+export const apiBaseURL = "https://api.vastpool.net/";
+export const apiPoolInfoURL = "https://api.vastpool.net/pool/info";
+export const apiWinningInfoURL = "https://api.vastpool.net/wallet/winning";
+export const apiFarmerInfoURL = "https://api.vastpool.net/farmer/";
+export const apiFarmerStatsURL = "https://api.vastpool.net/farmer/stats/";
+export const apiFarmerEarningURL = "https://api.vastpool.net/farmer/earning/";
+export const apiFarmerPayoutURL = "https://api.vastpool.net/farmer/payout/";
+export const apiFarmerPartialURL = "https://api.vastpool.net/partial/";
+export const apiLeaderboardURL = "https://api.vastpool.net/farmer/leaderboard";
+export const apiChiaPriceURL = "https://xchscan.com/api/chia-price";
+export const discordURL = "https://discord.com/invite/hq5HKjYn2G";
+export const xchScanURL = "https://xchscan.com/txns/";
