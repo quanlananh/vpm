@@ -13,7 +13,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 const DN = createDrawerNavigator();
 const Drawer = () => {
-  StatusBar.setHidden(true);
+  StatusBar.setHidden(false);
   return (
     <DN.Navigator
       screenOptions={{
