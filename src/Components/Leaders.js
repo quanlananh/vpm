@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
+import numbro from "numbro";
 
 export default function Leaders(props) {
   const { plotsize, textName, row, rank, name, diff, points } = styles;
@@ -31,13 +32,22 @@ export default function Leaders(props) {
               </Text>
             </DataTable.Cell>
             <DataTable.Cell style={plotsize} numeric>
-              {obj.plots}
+              {numbro(obj.plots).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
             </DataTable.Cell>
             <DataTable.Cell numeric style={diff}>
-              {obj.difficulty}
+              {numbro(obj.difficulty).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
             </DataTable.Cell>
             <DataTable.Cell numeric style={points}>
-              {obj.points}
+              {numbro(obj.points).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
             </DataTable.Cell>
           </DataTable.Row>
         );

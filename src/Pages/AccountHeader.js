@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
+import numbro from "numbro";
 
 export default function AccountHeader(props) {
   const { content, title } = styles;
@@ -11,11 +12,11 @@ export default function AccountHeader(props) {
       const total = props.rewards.reduce((a, b) => ({
         amount: a.amount / 1000000000000 + b.amount / 1000000000000,
       }));
-      const totalUSD = (total.amount * props.chiaPrice.usd).toLocaleString(
-        undefined,
-        { maximumFractionDigits: 2 }
-      );
-      setSuffix(" - $" + totalUSD);
+      const totalUSD = numbro(
+        total.amount * props.chiaPrice.usd
+      ).formatCurrency({ mantissa: 2 });
+
+      setSuffix(":  " + totalUSD);
     }
   });
 

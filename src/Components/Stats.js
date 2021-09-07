@@ -4,6 +4,7 @@ import { Card, Title, Paragraph } from "react-native-paper";
 import PoolSpaceChart from "./PoolSpaceChart";
 import { LinearGradient } from "expo-linear-gradient";
 import moment from "moment";
+import numbro from "numbro";
 
 export default function Stats(props) {
   const { card, content, paragraph, title } = styles;
@@ -98,7 +99,12 @@ export default function Stats(props) {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Total Points</Paragraph>
-            <Title style={title}>{poolTotalPoints}</Title>
+            <Title style={title}>
+              {numbro(poolTotalPoints).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
+            </Title>
           </LinearGradient>
         </Card.Content>
         <Card.Content style={content}>
@@ -107,7 +113,12 @@ export default function Stats(props) {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Net Difficulty</Paragraph>
-            <Title style={title}>{netDifficulty}</Title>
+            <Title style={title}>
+              {numbro(netDifficulty).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
+            </Title>
           </LinearGradient>
         </Card.Content>
       </View>

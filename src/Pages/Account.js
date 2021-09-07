@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
+import numbro from "numbro";
 
 const Account = (props) => {
   const { launcherId, points, difficulty, plots, name, minPayout } = {
@@ -18,7 +19,12 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Farmer Points</Paragraph>
-            <Title style={title}>{points}</Title>
+            <Title style={title}>
+              {numbro(points).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
+            </Title>
           </LinearGradient>
         </Card.Content>
         <Card.Content style={content}>
@@ -27,7 +33,12 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Plot Size</Paragraph>
-            <Title style={title}>{plots}</Title>
+            <Title style={title}>
+              {numbro(plots).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
+            </Title>
           </LinearGradient>
         </Card.Content>
       </View>
@@ -38,7 +49,12 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Difficulty</Paragraph>
-            <Title style={title}>{difficulty}</Title>
+            <Title style={title}>
+              {numbro(difficulty).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
+            </Title>
           </LinearGradient>
         </Card.Content>
         <Card.Content style={content}>
@@ -47,7 +63,12 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Total Paid XCH</Paragraph>
-            <Title style={title}>{props.totalPaid}</Title>
+            <Title style={title}>
+              {numbro(props.totalPaid).format({
+                thousandSeparated: true,
+                mantissa: 3,
+              })}
+            </Title>
           </LinearGradient>
         </Card.Content>
       </View>

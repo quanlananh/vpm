@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { View, StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
 import moment from "moment";
-
+import numbro from "numbro";
 class FarmerPartial extends Component {
   render() {
     const { content, title, text, row, date, coinId, difficulty } = styles;
@@ -43,7 +43,12 @@ class FarmerPartial extends Component {
                     <Text style={text}>{obj.id}</Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={difficulty} numeric>
-                    <Text style={text}>{obj.difficulty}</Text>
+                    <Text style={text}>
+                      {numbro(obj.difficulty).format({
+                        thousandSeparated: true,
+                        mantissa: 0,
+                      })}
+                    </Text>
                   </DataTable.Cell>
                 </DataTable.Row>
               );
