@@ -32,7 +32,7 @@ export default function FarmerPayoutChart(props) {
 
 const chartConfig = {
   backgroundGradientFrom: "#9be5aa",
-  backgroundGradientFromOpacity: 0,
+  // backgroundGradientFromOpacity: 1,
   backgroundGradientTo: "rgba(255,207,159,0.7)",
   backgroundGradientToOpacity: 1,
   color: (opacity = 1) => `rgb(255, 135, 35, ${opacity})`,

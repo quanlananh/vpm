@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { SafeAreaView, ScrollView, StyleSheet, StatusBar } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import Leaders from "../Components/Leaders";
 import LeadersHeader from "../Components/LeadersHeader";
 import AccountHeader from "./AccountHeader";
@@ -61,7 +61,6 @@ export default connect(mapStateToProps)(Leaderboard);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
   },
   contentContainer: {
     marginTop: -30,

@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Stats from "../Components/Stats";
 import RecentlyFarmed from "../Components/RecentlyFarmed";
-import { ScrollView, View, StatusBar } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Subheading, Button, Text } from "react-native-paper";
 
 // import {Global} from '../Styles/Global'
@@ -73,7 +73,6 @@ const styles = {
   },
   scrollView: {
     alignItems: "center",
-    height: StatusBar.currentHeight,
     width: "100%",
   },
   text: {

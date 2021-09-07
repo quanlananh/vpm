@@ -6,14 +6,13 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 import ToDo from "../Pages/ToDo";
-import { Linking, StatusBar } from "react-native";
+import { Linking } from "react-native";
 import { discordURL } from "../Utils/Constants";
 import Tab from "./Tab";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const DN = createDrawerNavigator();
 const Drawer = () => {
-  StatusBar.setHidden(false);
   return (
     <DN.Navigator
       screenOptions={{
