@@ -1,29 +1,63 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Stats from '../Components/Stats';
-import RecentlyFarmed from '../Components/RecentlyFarmed';
-import { ScrollView, View } from 'react-native';
-import { Subheading, Button, Text } from 'react-native-paper';
-import Spinner from 'react-native-loading-spinner-overlay';
+import React, { useRef, useEffect, useState } from "react";
+import { connect } from "react-redux";
+import Stats from "../Components/Stats";
+import RecentlyFarmed from "../Components/RecentlyFarmed";
+import { Animated, ScrollView, View, StatusBar } from "react-native";
+import { Subheading, Button, Text } from "react-native-paper";
+import Header from "../Components/Header";
 
 // import {Global} from '../Styles/Global'
 const Home = (props) => {
-  const { contentBody, subHeading, button, scrollView, text, subHeadingText } = styles;
   const poolInfo = props.info.data.poolInfo;
   const winningInfo = props.info.data.winningInfo;
+  const { contentBody, subHeading, button, scrollView, text, subHeadingText } =
+    styles;
+  const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 3000,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
 
   return (
     <View style={contentBody}>
-      <ScrollView scrollToOverflowEnabled={true} showsVerticalScrollIndicator={false} contentContainerStyle={scrollView}>
+      <StatusBar hidden={true} />
+      <Header
+        showSearch={true}
+        navigation={props.navigation}
+        farmerInfo={null}
+        setFarmerInfo={null}
+      />
+      <ScrollView
+        scrollToOverflowEnabled={true}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={scrollView}
+      >
         <Subheading style={subHeading}>
-          <Text style={subHeadingText}>JOIN ONE OF THE WORLD'S BIGGEST PERFORMING CHIA FARMING POOL</Text>
+          <Text style={subHeadingText}>
+            THE WORLD'S MOST EEFICIENT CHIA FARMING POOL
+          </Text>
         </Subheading>
-        <Button style={button} icon='login' mode='contained' onPress={() => console.log('Pressed')}>
+        <Button
+          style={button}
+          icon="login"
+          mode="contained"
+          onPress={() => console.log("Pressed")}
+        >
           <Text style={text}>Join Now</Text>
         </Button>
-
-        {poolInfo != null ? <Stats poolInfo={poolInfo} /> : <Spinner visible={true} textContent={'fetching data...'} textStyle={{ color: '#253145' }} animation='fade' />}
-        {winningInfo != null ? <RecentlyFarmed winningInfo={winningInfo} /> : null}
+        <Animated.View // Special animatable View
+          style={{
+            ...props.style,
+            opacity: fadeAnim, // Bind opacity to animated value
+          }}
+        >
+          <Stats poolInfo={poolInfo} />
+          <RecentlyFarmed winningInfo={winningInfo} />
+        </Animated.View>
       </ScrollView>
     </View>
   );
@@ -31,7 +65,7 @@ const Home = (props) => {
 
 function mapStateToProps(state) {
   return {
-    info: state.info
+    info: state.info,
   };
 }
 
@@ -39,40 +73,41 @@ export default connect(mapStateToProps)(Home);
 
 const styles = {
   contentBody: {
-    paddingTop: 5,
-    background: 'white'
+    paddingTop: 0,
+    background: "white",
   },
   subHeading: {
-    textAlign: 'center',
-    fontSize: 13,
-    fontWeight: 'bold'
+    textAlign: "center",
+    fontSize: 12,
+    fontWeight: "bold",
+    marginTop: 10,
   },
   button: {
-    backgroundColor: 'rgb(255, 135, 35)',
+    backgroundColor: "rgb(255, 135, 35)",
     marginTop: 20,
     marginBottom: 15,
     height: 40,
-    justifyContent: 'center',
+    justifyContent: "center",
     width: 140,
-    shadowColor: 'darkgrey',
+    shadowColor: "darkgrey",
     shadowOffset: { width: 3, height: 5 },
     shadowOpacity: 3,
     elevation: 1,
-    borderRadius: 20
+    borderRadius: 20,
   },
   scrollView: {
-    alignItems: 'center',
-    width: '100%'
+    alignItems: "center",
+    width: "100%",
   },
   text: {
-    color: 'white',
+    color: "white",
     fontSize: 13,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   subHeadingText: {
-    color: 'green',
-    textAlign: 'center',
-    fontSize: 13,
-    fontWeight: 'bold'
-  }
+    color: "green",
+    textAlign: "center",
+    fontSize: 12.5,
+    fontWeight: "bold",
+  },
 };

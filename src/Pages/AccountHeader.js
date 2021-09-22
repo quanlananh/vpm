@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { Appbar } from "react-native-paper";
+import numbro from "numbro";
 
 export default function AccountHeader(props) {
-  const { content, title } = styles;
+  const { content, title, text } = styles;
   const [suffix, setSuffix] = useState("");
 
   useEffect(() => {
@@ -11,25 +12,28 @@ export default function AccountHeader(props) {
       const total = props.rewards.reduce((a, b) => ({
         amount: a.amount / 1000000000000 + b.amount / 1000000000000,
       }));
-      const totalUSD = (total.amount * props.chiaPrice.usd).toLocaleString(
-        undefined,
-        { maximumFractionDigits: 2 }
-      );
-      setSuffix(" - $" + totalUSD);
+      const totalUSD = numbro(
+        total.amount * props.chiaPrice.usd
+      ).formatCurrency({ thousandSeparated: true, mantissa: 2 });
+
+      setSuffix(":  " + totalUSD);
     }
   });
 
   return (
     <Appbar.Header style={content}>
-      <Appbar.BackAction
-        color={"white"}
-        onPress={() => {
-          props.setShowAccount(false);
-        }}
-      />
+      {props.hideBackButton ? (
+        <Text style={text}>Last Search: </Text>
+      ) : (
+        <Appbar.BackAction
+          color={"white"}
+          onPress={() => {
+            props.setShowAccount(false);
+          }}
+        />
+      )}
       <Appbar.Content
         titleStyle={title}
-        color={"white"}
         title={
           props.name != null
             ? props.name + suffix
@@ -45,5 +49,16 @@ const styles = StyleSheet.create({
     marginTop: 0,
     backgroundColor: "rgb(255, 135, 35)",
   },
-  title: { fontSize: 13.7, fontWeight: "bold" },
+  title: {
+    fontSize: 13.5,
+    color: "#9be5aa",
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
+  text: {
+    fontSize: 12,
+    color: "white",
+    fontWeight: "bold",
+    marginLeft: 20,
+  },
 });

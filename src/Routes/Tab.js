@@ -1,8 +1,8 @@
 import React from "react";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import Header from "../Components/Header";
 import Leaderboard from "../Pages/Leaderboard";
 import { MaterialIcons } from "@expo/vector-icons";
+import Home from "../Pages/Home";
 
 const TN = createMaterialBottomTabNavigator();
 const Tab = () => {
@@ -13,7 +13,7 @@ const Tab = () => {
     >
       <TN.Screen
         name="Home"
-        component={Header}
+        component={Home}
         options={{
           tabBarIcon: ({ color }) => (
             <MaterialIcons name="home" color={color} size={26} />

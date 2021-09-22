@@ -4,7 +4,7 @@ import { View, StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
 import moment from "moment";
 import FarmerPayoutChart from "./FarmerPayoutChart";
-
+import numbro from "numbro";
 class FarmerPayout extends Component {
   render() {
     const { content, title, text, row, date, coinId, block, xch } = styles;
@@ -57,11 +57,19 @@ class FarmerPayout extends Component {
                     <Text style={text}>...{obj.parentCoin.slice(-15)}</Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={block} numeric>
-                    <Text style={text}>{obj.confirmedAtHeight}</Text>
+                    <Text style={text}>
+                      {numbro(obj.confirmedAtHeight).format({
+                        thousandSeparated: true,
+                        mantissa: 0,
+                      })}
+                    </Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={xch} numeric>
                     <Text style={text}>
-                      {(obj.amount / 1000000000000).toFixed(6)}
+                      {numbro(obj.amount / 1000000000000).format({
+                        thousandSeparated: true,
+                        mantissa: 3,
+                      })}
                     </Text>
                   </DataTable.Cell>
                 </DataTable.Row>

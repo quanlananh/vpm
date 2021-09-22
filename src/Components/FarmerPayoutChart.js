@@ -1,26 +1,28 @@
-import React from 'react';
-import { Dimensions, View, Text, StyleSheet } from 'react-native';
-import { BarChart } from 'react-native-chart-kit';
-import moment from 'moment';
+import React from "react";
+import { Dimensions, View, Text, StyleSheet } from "react-native";
+import { BarChart } from "react-native-chart-kit";
+import moment from "moment";
 
 export default function FarmerPayoutChart(props) {
   const { content, title, chart } = styles;
 
   return (
     <View style={content}>
-      <Text style={title}>Seven Most Recent Payouts since {moment(moment()).format('MM/DD HH:mm')}</Text>
+      <Text style={title}>
+        Seven Most Recent Payouts since {moment(moment()).format("MM/DD HH:mm")}
+      </Text>
       <BarChart
         style={chart}
         data={{
           labels: props.x,
           datasets: [
             {
-              data: props.y
-            }
-          ]
+              data: props.y,
+            },
+          ],
         }}
         showBarTops={false}
-        width={Dimensions.get('window').width}
+        width={Dimensions.get("window").width}
         height={230}
         chartConfig={chartConfig}
       />
@@ -29,27 +31,26 @@ export default function FarmerPayoutChart(props) {
 }
 
 const chartConfig = {
-  backgroundGradientFrom: '#9be5aa',
-  // backgroundGradientFromOpacity: 0,
-  backgroundGradientTo: 'rgba(255,207,159,0.7)',
+  backgroundGradientFrom: "#9be5aa",
+  // backgroundGradientFromOpacity: 1,
+  backgroundGradientTo: "rgba(255,207,159,0.7)",
   backgroundGradientToOpacity: 1,
   color: (opacity = 1) => `rgb(255, 135, 35, ${opacity})`,
   barPercentage: 0.6,
   fillShadowGradient: `rgb(255, 135, 35)`,
-  fillShadowGradientOpacity: 1
+  fillShadowGradientOpacity: 1,
 };
 
 const styles = StyleSheet.create({
   content: {
     marginTop: 30,
-    justifyContent: 'center'
   },
   title: {
-    textAlign: 'center',
+    textAlign: "center",
     marginBottom: 5,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   chart: {
-    borderRadius: 0
-  }
+    borderRadius: 0,
+  },
 });

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { SafeAreaView, ScrollView, StyleSheet, StatusBar } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import Leaders from "../Components/Leaders";
 import LeadersHeader from "../Components/LeadersHeader";
 import AccountHeader from "./AccountHeader";
 import FarmerEarning from "../Components/FarmerEarning";
+import Header from "../Components/Header";
 
 const Leaderboard = (props) => {
   const leaderBoard = props.info.data.leaderBoard;
@@ -14,7 +15,8 @@ const Leaderboard = (props) => {
 
   if (showAccount && leaderBoard != null) {
     return (
-      <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <Header showSearch={true} navigation={props.navigation} />
         <AccountHeader
           setShowAccount={setShowAccount}
           launcherId={launcherId}
@@ -23,11 +25,12 @@ const Leaderboard = (props) => {
           chiaPrice={props.info.data.chiaPrice}
         />
         <FarmerEarning launcherId={launcherId} />
-      </SafeAreaView>
+      </View>
     );
   } else {
     return (
-      <SafeAreaView style={styles.container}>
+      <View>
+        <Header showSearch={true} navigation={props.navigation} />
         <ScrollView
           contentContainerStyle={styles.contentContainer}
           stickyHeaderIndices={[0]}
@@ -45,7 +48,7 @@ const Leaderboard = (props) => {
             ]}
           />
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 };
@@ -61,7 +64,6 @@ export default connect(mapStateToProps)(Leaderboard);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: StatusBar.currentHeight,
   },
   contentContainer: {
     marginTop: -30,

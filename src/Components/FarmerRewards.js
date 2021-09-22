@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
+import numbro from "numbro";
 
 export default function FarmerRewards(props) {
   const { content, title, text, textName, row, period, xch, usd } = styles;
@@ -32,15 +33,21 @@ export default function FarmerRewards(props) {
                   <Text style={text}>{obj.period}</Text>
                 </DataTable.Cell>
                 <DataTable.Cell style={xch} numeric>
-                  <Text style={text}>{obj.amount / 1000000000000}</Text>
+                  <Text style={text}>
+                    {numbro(obj.amount / 1000000000000).format({
+                      thousandSeparated: true,
+                      mantissa: 3,
+                    })}
+                  </Text>
                 </DataTable.Cell>
                 <DataTable.Cell style={usd} numeric>
                   <Text style={text}>
-                    $
-                    {(
-                      (obj.amount / 1000000000000) *
-                      props.chiaPrice.usd
-                    ).toLocaleString(undefined, { maximumFractionDigits: 2 })}
+                    {numbro(
+                      (obj.amount / 1000000000000) * props.chiaPrice.usd
+                    ).formatCurrency({
+                      thousandSeparated: true,
+                      mantissa: 2,
+                    })}
                   </Text>
                 </DataTable.Cell>
               </DataTable.Row>
@@ -55,7 +62,7 @@ export default function FarmerRewards(props) {
 const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
-    marginTop: 10,
+    marginTop: 5,
   },
   title: {
     textAlign: "center",

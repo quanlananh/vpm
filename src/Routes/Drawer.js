@@ -6,14 +6,14 @@ import {
   DrawerItem,
 } from "@react-navigation/drawer";
 import ToDo from "../Pages/ToDo";
-import { Linking, StatusBar } from "react-native";
+import Search from "../Pages/Search";
+import { Linking } from "react-native";
 import { discordURL } from "../Utils/Constants";
 import Tab from "./Tab";
 import { MaterialIcons } from "@expo/vector-icons";
 
 const DN = createDrawerNavigator();
 const Drawer = () => {
-  StatusBar.setHidden(false);
   return (
     <DN.Navigator
       screenOptions={{
@@ -28,7 +28,6 @@ const Drawer = () => {
           width: 265,
         },
       }}
-      // initialRouteName='Home'
       drawerContent={(props) => <CustomDrawerContent {...props} />}
     >
       <DN.Screen
@@ -39,11 +38,9 @@ const Drawer = () => {
           ),
         }}
         component={Tab}
-        // options={({ route }) => ({
-        //   headerTitle: getHeaderTitle(route)
-        // })}
       />
-      <DN.Screen name="Search" component={ToDo} />
+
+      <DN.Screen name="Search" component={Search} />
       <DN.Screen name="Terms" component={ToDo} />
       <DN.Screen name="Privacy" component={ToDo} />
       <DN.Screen name="News" component={ToDo} />
@@ -68,16 +65,5 @@ function CustomDrawerContent(props) {
     </DrawerContentScrollView>
   );
 }
-
-// function getHeaderTitle(route) {
-//   const routeName = route.state ? route.state.routes[route.state.index].name : route.params?.screen || 'Welcome to Vast Pool';
-
-//   switch (routeName) {
-//     case 'Welcome to Vast Pool':
-//       return 'Welcome to Vast Pool';
-//     case 'Leaderboard':
-//       return 'Leaderboard';
-//   }
-// }
 
 export default Drawer;

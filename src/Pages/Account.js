@@ -1,16 +1,29 @@
 import React from "react";
-import { View } from "react-native";
+import { Dimensions, TextInput, View, StatusBar } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
 import { LinearGradient } from "expo-linear-gradient";
+import { CountUp } from "use-count-up";
+
+const screenHeight = Dimensions.get("window").height;
+// import {Global} from '../Styles/Global'
 
 const Account = (props) => {
   const { launcherId, points, difficulty, plots, name, minPayout } = {
     ...props.farmerInfo[0],
   };
+
   const { card, content, paragraph, title } = styles;
 
   return (
     <View>
+      {/* display launcherID for testing purpose */}
+      {/* <TextInput
+        placeholder={launcherId}
+        value={launcherId}
+        autoCapitalize={"none"}
+        autoFocus={true}
+      /> */}
+
       <View style={card}>
         <Card.Content style={content}>
           <LinearGradient
@@ -18,7 +31,13 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Farmer Points</Paragraph>
-            <Title style={title}>{points}</Title>
+            <Title style={title}>
+              <CountUp
+                isCounting
+                end={points}
+                formatter={(value) => value.toLocaleString()}
+              />
+            </Title>
           </LinearGradient>
         </Card.Content>
         <Card.Content style={content}>
@@ -27,7 +46,13 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Plot Size</Paragraph>
-            <Title style={title}>{plots}</Title>
+            <Title style={title}>
+              <CountUp
+                isCounting
+                end={plots}
+                formatter={(value) => value.toLocaleString()}
+              />
+            </Title>
           </LinearGradient>
         </Card.Content>
       </View>
@@ -38,7 +63,13 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Difficulty</Paragraph>
-            <Title style={title}>{difficulty}</Title>
+            <Title style={title}>
+              <CountUp
+                isCounting
+                end={difficulty}
+                formatter={(value) => value.toLocaleString()}
+              />
+            </Title>
           </LinearGradient>
         </Card.Content>
         <Card.Content style={content}>
@@ -47,7 +78,13 @@ const Account = (props) => {
             start={{ x: 0.1, y: 0.2 }}
           >
             <Paragraph style={paragraph}>Total Paid XCH</Paragraph>
-            <Title style={title}>{props.totalPaid}</Title>
+            <Title style={title}>
+              <CountUp
+                isCounting
+                end={parseFloat(props.totalPaid)}
+                formatter={(value) => value.toLocaleString()}
+              />
+            </Title>
           </LinearGradient>
         </Card.Content>
       </View>

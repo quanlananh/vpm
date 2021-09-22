@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import FetchData from "../Utils/FetchData";
 import Account from "../Pages/Account";
 import FarmerChart from "./FarmerChart";
@@ -28,7 +28,6 @@ class FarmerStats extends Component {
       farmerInfo = info.data.leaderBoard.filter(
         (obj) => obj.launcherId == this.props.launcherId
       );
-
       //Farmer Estimated Plots
       if (info.data.farmerStats.launcherId == this.props.launcherId) {
         estimates = info.data.farmerStats.estimates;
@@ -38,7 +37,6 @@ class FarmerStats extends Component {
         x = x.slice(Math.max(x.length - 10, 1));
         y = y.slice(Math.max(y.length - 10, 1));
       }
-
       //Farmer Rewards
       if ((info.data.farmerEarning.launcherId = this.props.launcherId)) {
         rewards = info.data.farmerEarning;
@@ -58,6 +56,7 @@ class FarmerStats extends Component {
             visible={true}
             textContent={"fetching data..."}
             textStyle={{ color: "#253145" }}
+            ß
             animation="fade"
           />
         )}
@@ -77,3 +76,13 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { FetchData })(FarmerStats);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "green",
+  },
+  contentContainer: {
+    marginTop: -30,
+  },
+});
