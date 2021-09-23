@@ -8,12 +8,13 @@ export default function AccountHeader(props) {
   const [suffix, setSuffix] = useState("");
 
   useEffect(() => {
+    //Farmer Payout
     if (props.rewards != "undefined" && props.rewards != null) {
       const total = props.rewards.reduce((a, b) => ({
-        amount: a.amount / 1000000000000 + b.amount / 1000000000000,
+        amount: a.amount + b.amount,
       }));
       const totalUSD = numbro(
-        total.amount * props.chiaPrice.usd
+        (total.amount / 1000000000000) * props.chiaPrice.usd
       ).formatCurrency({ thousandSeparated: true, mantissa: 2 });
 
       setSuffix(":  " + totalUSD);

@@ -37,13 +37,13 @@ class FarmerStats extends Component {
         x = x.slice(Math.max(x.length - 10, 1));
         y = y.slice(Math.max(y.length - 10, 1));
       }
-      //Farmer Rewards
-      if ((info.data.farmerEarning.launcherId = this.props.launcherId)) {
-        rewards = info.data.farmerEarning;
+      //Farmer Payout
+      if ((info.data.farmerPayout.launcherId = this.props.launcherId)) {
+        rewards = info.data.farmerPayout;
         const total = rewards.reduce((a, b) => ({
-          amount: a.amount / 1000000000000 + b.amount / 1000000000000,
+          amount: a.amount + b.amount,
         }));
-        totalPaid = total.amount.toFixed(10);
+        totalPaid = (total.amount / 1000000000000).toFixed(2);
       }
     }
 

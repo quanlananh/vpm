@@ -75,7 +75,7 @@ const Search = (props) => {
             hideBackButton={true}
             launcherId={farmerInfo[0].launcherId}
             name={farmerInfo[0].name}
-            rewards={props.info.data.farmerEarning}
+            rewards={props.info.data.farmerPayout}
             chiaPrice={props.info.data.chiaPrice}
           />
 

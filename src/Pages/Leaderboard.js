@@ -21,7 +21,7 @@ const Leaderboard = (props) => {
           setShowAccount={setShowAccount}
           launcherId={launcherId}
           name={name}
-          rewards={props.info.data.farmerEarning}
+          rewards={props.info.data.farmerPayout}
           chiaPrice={props.info.data.chiaPrice}
         />
         <FarmerEarning launcherId={launcherId} />
