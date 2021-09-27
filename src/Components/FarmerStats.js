@@ -19,6 +19,7 @@ class FarmerStats extends Component {
     let farmerInfo = null;
     let estimates = null;
     let rewards = null;
+    let payout = null;
     let totalPaid = 0;
     let x = [];
     let y = [];
@@ -39,8 +40,9 @@ class FarmerStats extends Component {
       }
       //Farmer Payout
       if ((info.data.farmerPayout.launcherId = this.props.launcherId)) {
-        rewards = info.data.farmerPayout;
-        const total = rewards.reduce((a, b) => ({
+        rewards = info.data.farmerEarning;
+        payout = info.data.farmerPayout;
+        const total = payout.reduce((a, b) => ({
           amount: a.amount + b.amount,
         }));
         totalPaid = (total.amount / 1000000000000).toFixed(2);

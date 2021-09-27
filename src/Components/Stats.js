@@ -105,11 +105,15 @@ export default function Stats(props) {
           >
             <Paragraph style={paragraph}>Total Points</Paragraph>
             <Title style={title}>
-              <CountUp
+              {/* <CountUp
                 isCounting
                 end={poolTotalPoints}
                 formatter={(value) => value.toLocaleString()}
-              />
+              /> */}
+              {numbro(poolTotalPoints).format({
+                thousandSeparated: true,
+                mantissa: 0,
+              })}
             </Title>
           </LinearGradient>
         </Card.Content>

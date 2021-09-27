@@ -16,7 +16,7 @@ const Header = ({ navigation, showSearch, farmerInfo, setFarmerInfo }) => {
         <Image style={image} source={logo} />
       </TouchableRipple>
       <Appbar.Content
-        title="Vast"
+        title="ast"
         subtitle="POOL"
         titleStyle={title}
         subtitleStyle={subtitle}
@@ -59,17 +59,18 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: "rgb(255, 135, 35)",
     textAlign: "left",
+    marginLeft: -25,
   },
   subtitle: {
     fontSize: 12,
     fontWeight: "bold",
     color: "rgb(255, 135, 35)",
-    marginLeft: 70,
+    marginLeft: 20,
     marginTop: -8,
   },
   image: {
-    width: 70,
-    height: 70,
+    width: 50,
+    height: 50,
     marginLeft: 10,
   },
   toggle: {

@@ -34,6 +34,7 @@ const Account = (props) => {
             <Title style={title}>
               <CountUp
                 isCounting
+                easing="easeInCubic"
                 end={points}
                 formatter={(value) => value.toLocaleString()}
               />

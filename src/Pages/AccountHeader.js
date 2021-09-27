@@ -9,7 +9,7 @@ export default function AccountHeader(props) {
 
   useEffect(() => {
     //Farmer Payout
-    if (props.rewards != "undefined" && props.rewards != null) {
+    if (props.rewards != "undefined" && props.payout != null) {
       const total = props.rewards.reduce((a, b) => ({
         amount: a.amount + b.amount,
       }));
