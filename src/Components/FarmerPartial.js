@@ -36,7 +36,7 @@ class FarmerPartial extends Component {
                 <DataTable.Row style={row} key={index}>
                   <DataTable.Cell style={date}>
                     <Text style={text}>
-                      {moment(obj.timestamp).format("MM/DD HH:mm")}
+                      {moment.unix(obj.timestamp).format("MM/DD HH:mm")}
                     </Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={coinId}>
