@@ -27,11 +27,13 @@ export default function PoolSpaceChart(props) {
           backgroundGradientFrom: "#9be5aa",
           backgroundGradientTo: "rgba(255,207,159,0.7)",
           decimalPlaces: 0,
-          color: (opacity = 1) => `rgb(255, 135, 35, ${opacity})`,
-          style: {
-            borderRadius: 16,
-          },
+          color: (opacity = 255) => `rgb(0, 0, 0, ${opacity})`,
+          strokeWidth: 1.5,
         }}
+        withDots={false}
+        withShadow={false}
+        withInnerLines={false}
+        withOuterLines={true}
         bezier
         style={chart}
       />

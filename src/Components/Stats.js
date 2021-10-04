@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
-import PoolSpaceChart from "./PoolSpaceChart";
+import PoolSpaceD3Chart from "./PoolSpaceD3Chart";
 import { LinearGradient } from "expo-linear-gradient";
-import moment from "moment";
+// import moment from "moment";
 import numbro from "numbro";
 import { CountUp } from "use-count-up";
 
@@ -41,11 +41,9 @@ export default function Stats(props) {
   });
 
   if (psh != "undefined" && psh != null) {
-    x = psh.map((value) => moment(value.date).format("DD"));
+    // x = psh.map((value) => moment(value.date).format("DD"));
+    x = psh.map((value) => value.date);
     y = psh.map((value) => value.poolSpace);
-    // only show the last 10 due to mobile screen width limitation
-    x = x.slice(Math.max(x.length - 10, 1));
-    y = y.slice(Math.max(y.length - 10, 1));
   }
   return (
     <View>
@@ -134,7 +132,8 @@ export default function Stats(props) {
       </View>
 
       {psh != "undefined" && psh != null ? (
-        <PoolSpaceChart x={x} y={y} />
+        // <PoolSpaceChart x={x} y={y} />
+        <PoolSpaceD3Chart x={x} y={y} />
       ) : null}
     </View>
   );

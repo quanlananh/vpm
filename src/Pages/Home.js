@@ -12,15 +12,15 @@ const Home = (props) => {
   const winningInfo = props.info.data.winningInfo;
   const { contentBody, subHeading, button, scrollView, text, subHeadingText } =
     styles;
-  const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
+  // const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
 
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 3000,
-      useNativeDriver: true,
-    }).start();
-  }, [fadeAnim]);
+  // useEffect(() => {
+  //   Animated.timing(fadeAnim, {
+  //     toValue: 1,
+  //     duration: 3000,
+  //     useNativeDriver: true,
+  //   }).start();
+  // }, [fadeAnim]);
 
   return (
     <View style={contentBody}>
@@ -49,15 +49,15 @@ const Home = (props) => {
         >
           <Text style={text}>Join Now</Text>
         </Button>
-        <Animated.View // Special animatable View
+        {/* <Animated.View // Special animatable View
           style={{
             ...props.style,
             opacity: fadeAnim, // Bind opacity to animated value
           }}
-        >
-          <Stats poolInfo={poolInfo} />
-          <RecentlyFarmed winningInfo={winningInfo} />
-        </Animated.View>
+        > */}
+        <Stats poolInfo={poolInfo} />
+        <RecentlyFarmed winningInfo={winningInfo} />
+        {/* </Animated.View> */}
       </ScrollView>
     </View>
   );
