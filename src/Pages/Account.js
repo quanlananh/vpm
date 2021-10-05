@@ -36,7 +36,8 @@ const Account = (props) => {
                 isCounting
                 easing="easeInCubic"
                 end={points}
-                formatter={(value) => value.toLocaleString()}
+                thousandsSeparator=","
+                decimalSeparator="."
               />
             </Title>
           </LinearGradient>
@@ -51,7 +52,8 @@ const Account = (props) => {
               <CountUp
                 isCounting
                 end={plots}
-                formatter={(value) => value.toLocaleString()}
+                thousandsSeparator=","
+                decimalSeparator="."
               />
             </Title>
           </LinearGradient>
@@ -68,7 +70,8 @@ const Account = (props) => {
               <CountUp
                 isCounting
                 end={difficulty}
-                formatter={(value) => value.toLocaleString()}
+                thousandsSeparator=","
+                decimalSeparator="."
               />
             </Title>
           </LinearGradient>
@@ -83,7 +86,8 @@ const Account = (props) => {
               <CountUp
                 isCounting
                 end={parseFloat(props.totalPaid)}
-                formatter={(value) => value.toLocaleString()}
+                thousandsSeparator=","
+                decimalSeparator="."
               />
             </Title>
           </LinearGradient>

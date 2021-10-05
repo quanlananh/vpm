@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Linking } from "react-native";
 import { DataTable } from "react-native-paper";
 import moment from "moment";
 import { xchScanURL } from "../Utils/Constants";
-import numbro from "numbro";
+import { CountUp } from "use-count-up";
 
 export default function RecentlyFarmed(props) {
   const { content, title, text, textName, row, block, name, reward } = styles;
@@ -51,10 +51,13 @@ export default function RecentlyFarmed(props) {
                 </DataTable.Cell>
                 <DataTable.Cell numeric style={reward}>
                   <Text style={text}>
-                    {numbro(obj.amount / 1000000000000).format({
-                      thousandSeparated: true,
-                      mantissa: 2,
-                    })}{" "}
+                    <CountUp
+                      isCounting
+                      easing="easeInCubic"
+                      end={obj.amount / 1000000000000}
+                      thousandsSeparator=","
+                      decimalSeparator="."
+                    />{" "}
                     XCH
                   </Text>
                 </DataTable.Cell>

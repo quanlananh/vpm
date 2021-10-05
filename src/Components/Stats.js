@@ -3,8 +3,6 @@ import { View, StyleSheet } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
 import PoolSpaceD3Chart from "./PoolSpaceD3Chart";
 import { LinearGradient } from "expo-linear-gradient";
-// import moment from "moment";
-import numbro from "numbro";
 import { CountUp } from "use-count-up";
 
 export default function Stats(props) {
@@ -55,7 +53,13 @@ export default function Stats(props) {
           >
             <Paragraph style={paragraph}>Net Space</Paragraph>
             <Title style={title}>
-              <CountUp isCounting end={netspace} /> {netspaceUnit}
+              <CountUp
+                isCounting
+                end={netspace}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />{" "}
+              {netspaceUnit}
             </Title>
           </LinearGradient>
         </Card.Content>
@@ -66,7 +70,12 @@ export default function Stats(props) {
           >
             <Paragraph style={paragraph}>Farmer Online</Paragraph>
             <Title style={title}>
-              <CountUp isCounting end={farmerOnline} />
+              <CountUp
+                isCounting
+                end={farmerOnline}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />
             </Title>
           </LinearGradient>
         </Card.Content>
@@ -79,7 +88,13 @@ export default function Stats(props) {
           >
             <Paragraph style={paragraph}>Pool Space</Paragraph>
             <Title style={title}>
-              <CountUp isCounting end={poolSpace} /> {poolSpaceUnit}
+              <CountUp
+                isCounting
+                end={poolSpace}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />{" "}
+              {poolSpaceUnit}
             </Title>
           </LinearGradient>
         </Card.Content>
@@ -90,7 +105,12 @@ export default function Stats(props) {
           >
             <Paragraph style={paragraph}>Block Found</Paragraph>
             <Title style={title}>
-              <CountUp isCounting end={blockFound} />
+              <CountUp
+                isCounting
+                end={blockFound}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />
             </Title>
           </LinearGradient>
         </Card.Content>
@@ -103,15 +123,12 @@ export default function Stats(props) {
           >
             <Paragraph style={paragraph}>Total Points</Paragraph>
             <Title style={title}>
-              {/* <CountUp
+              <CountUp
                 isCounting
                 end={poolTotalPoints}
-                formatter={(value) => value.toLocaleString()}
-              /> */}
-              {numbro(poolTotalPoints).format({
-                thousandSeparated: true,
-                mantissa: 0,
-              })}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />
             </Title>
           </LinearGradient>
         </Card.Content>
@@ -122,10 +139,12 @@ export default function Stats(props) {
           >
             <Paragraph style={paragraph}>Net Difficulty</Paragraph>
             <Title style={title}>
-              {numbro(netDifficulty).format({
-                thousandSeparated: true,
-                mantissa: 0,
-              })}
+              <CountUp
+                isCounting
+                end={netDifficulty}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />
             </Title>
           </LinearGradient>
         </Card.Content>

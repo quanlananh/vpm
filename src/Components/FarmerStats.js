@@ -58,7 +58,6 @@ class FarmerStats extends Component {
             visible={true}
             textContent={"fetching data..."}
             textStyle={{ color: "#253145" }}
-            ß
             animation="fade"
           />
         )}

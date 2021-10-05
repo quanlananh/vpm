@@ -99,7 +99,8 @@ export default class PoolSpaceD3Chart extends React.Component {
     const x = this.props.x;
     const y = this.props.y;
     let data = [];
-    for (let i = 0; i < x.length; i += 6) {
+    for (let i = 0; i < x.length; i += Math.floor(Math.random() * 3 + 5)) {
+      // random number between 5 and 7)
       data.push({ x: moment(x[i]).format("MM-DD"), y: y[i] });
     }
     data.push({

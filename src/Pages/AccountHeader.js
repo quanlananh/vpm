@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { Appbar } from "react-native-paper";
-import numbro from "numbro";
 
 export default function AccountHeader(props) {
   const { content, title, text } = styles;
-  const [suffix, setSuffix] = useState("");
+  const [totalUSD, setTotalUSD] = useState(0);
 
   useEffect(() => {
     //Farmer Payout
     if (props.rewards != "undefined" && props.payout != null) {
-      const total = props.rewards.reduce((a, b) => ({
+      const total = props.payout.reduce((a, b) => ({
         amount: a.amount + b.amount,
       }));
-      const totalUSD = numbro(
-        (total.amount / 1000000000000) * props.chiaPrice.usd
-      ).formatCurrency({ thousandSeparated: true, mantissa: 2 });
-
-      setSuffix(":  " + totalUSD);
+      setTotalUSD((total.amount / 1000000000000) * props.chiaPrice.usd);
     }
   });
 
@@ -36,9 +31,11 @@ export default function AccountHeader(props) {
       <Appbar.Content
         titleStyle={title}
         title={
-          props.name != null
-            ? props.name + suffix
-            : "..." + props.launcherId.slice(-17) + suffix
+          (props.name != null
+            ? props.name
+            : "..." + props.launcherId.slice(-17)) +
+          ":  $" +
+          totalUSD.toFixed(2)
         }
       />
     </Appbar.Header>

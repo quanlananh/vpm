@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
-import numbro from "numbro";
+import { CountUp } from "use-count-up";
 
 export default function FarmerRewards(props) {
   const { content, title, text, textName, row, period, xch, usd } = styles;
@@ -34,20 +34,27 @@ export default function FarmerRewards(props) {
                 </DataTable.Cell>
                 <DataTable.Cell style={xch} numeric>
                   <Text style={text}>
-                    {numbro(obj.amount / 1000000000000).format({
-                      thousandSeparated: true,
-                      mantissa: 3,
-                    })}
+                    <CountUp
+                      isCounting
+                      easing="easeInCubic"
+                      end={obj.amount / 1000000000000}
+                      thousandsSeparator=","
+                      decimalSeparator="."
+                      decimalPlaces="3"
+                    />
                   </Text>
                 </DataTable.Cell>
                 <DataTable.Cell style={usd} numeric>
                   <Text style={text}>
-                    {numbro(
-                      (obj.amount / 1000000000000) * props.chiaPrice.usd
-                    ).formatCurrency({
-                      thousandSeparated: true,
-                      mantissa: 2,
-                    })}
+                    $
+                    <CountUp
+                      isCounting
+                      easing="easeInCubic"
+                      end={(obj.amount / 1000000000000) * props.chiaPrice.usd}
+                      thousandsSeparator=","
+                      decimalSeparator="."
+                      decimalPlaces="2"
+                    />
                   </Text>
                 </DataTable.Cell>
               </DataTable.Row>

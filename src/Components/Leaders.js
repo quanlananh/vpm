@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
-import numbro from "numbro";
+import { CountUp } from "use-count-up";
 
 export default function Leaders(props) {
   const { plotsize, textName, row, rank, name, diff, points } = styles;
@@ -32,22 +32,31 @@ export default function Leaders(props) {
               </Text>
             </DataTable.Cell>
             <DataTable.Cell style={plotsize} numeric>
-              {numbro(obj.plots).format({
-                thousandSeparated: true,
-                mantissa: 0,
-              })}
+              <CountUp
+                isCounting
+                easing="easeInCubic"
+                end={obj.plots}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />
             </DataTable.Cell>
             <DataTable.Cell numeric style={diff}>
-              {numbro(obj.difficulty).format({
-                thousandSeparated: true,
-                mantissa: 0,
-              })}
+              <CountUp
+                isCounting
+                easing="easeInCubic"
+                end={obj.difficulty}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />
             </DataTable.Cell>
             <DataTable.Cell numeric style={points}>
-              {numbro(obj.points).format({
-                thousandSeparated: true,
-                mantissa: 0,
-              })}
+              <CountUp
+                isCounting
+                easing="easeInCubic"
+                end={obj.points}
+                thousandsSeparator=","
+                decimalSeparator="."
+              />
             </DataTable.Cell>
           </DataTable.Row>
         );

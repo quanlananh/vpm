@@ -4,7 +4,7 @@ import { View, StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
 import moment from "moment";
 import FarmerPayoutChart from "./FarmerPayoutChart";
-import numbro from "numbro";
+import { CountUp } from "use-count-up";
 class FarmerPayout extends Component {
   render() {
     const { content, title, text, row, date, coinId, block, xch } = styles;
@@ -54,22 +54,29 @@ class FarmerPayout extends Component {
                     </Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={coinId} numeric>
-                    <Text style={text}>...{obj.parentCoin.slice(-15)}</Text>
+                    <Text style={text}>...{obj.parentCoin.slice(-20)}</Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={block} numeric>
                     <Text style={text}>
-                      {numbro(obj.confirmedAtHeight).format({
-                        thousandSeparated: true,
-                        mantissa: 0,
-                      })}
+                      <CountUp
+                        isCounting
+                        easing="easeInCubic"
+                        end={obj.confirmedAtHeight}
+                        thousandsSeparator=","
+                        decimalSeparator="."
+                      />
                     </Text>
                   </DataTable.Cell>
                   <DataTable.Cell style={xch} numeric>
                     <Text style={text}>
-                      {numbro(obj.amount / 1000000000000).format({
-                        thousandSeparated: true,
-                        mantissa: 3,
-                      })}
+                      <CountUp
+                        isCounting
+                        easing="easeInCubic"
+                        end={obj.amount / 1000000000000}
+                        thousandsSeparator=","
+                        decimalSeparator="."
+                        decimalPlaces="3"
+                      />
                     </Text>
                   </DataTable.Cell>
                 </DataTable.Row>
@@ -110,12 +117,12 @@ const styles = StyleSheet.create({
     flex: 1.3,
   },
   coinId: {
-    flex: 2,
+    flex: 2.7,
   },
   block: {
     flex: 1,
   },
   xch: {
-    flex: 1.1,
+    flex: 0.7,
   },
 });

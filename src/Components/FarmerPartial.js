@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { View, StyleSheet, Text } from "react-native";
 import { DataTable } from "react-native-paper";
 import moment from "moment";
-import numbro from "numbro";
+import { CountUp } from "use-count-up";
 class FarmerPartial extends Component {
   render() {
     const { content, title, text, row, date, coinId, difficulty } = styles;
@@ -27,7 +27,7 @@ class FarmerPartial extends Component {
               <DataTable.Title style={date}>Date</DataTable.Title>
               <DataTable.Title style={coinId}>ID</DataTable.Title>
               <DataTable.Title numeric style={difficulty}>
-                Difficulty
+                Diff
               </DataTable.Title>
             </DataTable.Header>
 
@@ -44,10 +44,13 @@ class FarmerPartial extends Component {
                   </DataTable.Cell>
                   <DataTable.Cell style={difficulty} numeric>
                     <Text style={text}>
-                      {numbro(obj.difficulty).format({
-                        thousandSeparated: true,
-                        mantissa: 0,
-                      })}
+                      <CountUp
+                        isCounting
+                        easing="easeInCubic"
+                        end={obj.difficulty}
+                        thousandsSeparator=","
+                        decimalSeparator="."
+                      />
                     </Text>
                   </DataTable.Cell>
                 </DataTable.Row>
@@ -84,12 +87,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   date: {
-    flex: 1.2,
+    flex: 1.5,
   },
   coinId: {
-    flex: 2.5,
+    flex: 3,
   },
   difficulty: {
-    flex: 0.8,
+    flex: 0.5,
   },
 });
