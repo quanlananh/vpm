@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { Card, Title, Paragraph } from "react-native-paper";
-import PoolSpaceD3Chart from "./PoolSpaceD3Chart";
+import PoolSpaceChart from "./PoolSpaceChart.js";
 import { LinearGradient } from "expo-linear-gradient";
 import { CountUp } from "use-count-up";
+import moment from "moment";
 
 export default function Stats(props) {
   const { card, content, paragraph, title } = styles;
@@ -39,8 +40,8 @@ export default function Stats(props) {
   });
 
   if (psh != "undefined" && psh != null) {
-    // x = psh.map((value) => moment(value.date).format("DD"));
-    x = psh.map((value) => value.date);
+    x = psh.map((value) => moment(value.date).format("MM-DD"));
+    // x = psh.map((value) => value.date);
     y = psh.map((value) => value.poolSpace);
   }
   return (
@@ -151,9 +152,9 @@ export default function Stats(props) {
       </View>
 
       {psh != "undefined" && psh != null ? (
-        // <PoolSpaceChart x={x} y={y} />
-        <PoolSpaceD3Chart x={x} y={y} />
-      ) : null}
+        <PoolSpaceChart x={x} y={y} />
+      ) : // <PoolSpaceD3Chart x={x} y={y} />
+      null}
     </View>
   );
 }

@@ -5,15 +5,14 @@ import moment from "moment";
 
 export default function PoolSpaceChart(props) {
   const { content, title, chart } = styles;
+  const x = props.x;
 
   return (
     <View style={content}>
-      <Text style={title}>
-        Pool Space for the last 10 days from {moment(moment()).format("MMM DD")}
-      </Text>
+      <Text style={title}>Recent Pool Space</Text>
       <LineChart
         data={{
-          labels: props.x,
+          labels: [x[0], ...x.filter((e, i) => i % 7 === 6), x[x.length - 1]],
           datasets: [
             {
               data: props.y,
@@ -23,6 +22,7 @@ export default function PoolSpaceChart(props) {
         width={Dimensions.get("window").width}
         height={230}
         yAxisLabel={"PiB-"}
+        verticalLabelRotation={335}
         chartConfig={{
           backgroundGradientFrom: "#9be5aa",
           backgroundGradientTo: "rgba(255,207,159,0.7)",
